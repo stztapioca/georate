@@ -1,11 +1,14 @@
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
+from layers import Layer
 
 class Node(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
     user_id=models.ForeignKey(User)
-    area = models.IntegerField()
+    layer_id=models.ForeignKey(Layer)
+    slug = models.CharField(max_length=50 ,unique=true)
+    area = models.PolygonField()
     lon = models.FloatField()
     lat = models.FloatField()
     coords = models.PointField()

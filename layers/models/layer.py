@@ -10,9 +10,10 @@ class Layer(models.Model):
     organization = models.CharField(max_length=50)
     website = models.CharField(max_length=50)
     center = models.PointField()
-    area = models.PointField()
+    area = models.PolygonField()
     write_access_level = models.IntegerField()
     minimum_distance = models.IntegerField()
+    objects = models.GeoManager()
     def __unicode__(self):
         return self.name
     class Meta:
