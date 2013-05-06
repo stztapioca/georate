@@ -14,5 +14,5 @@ class NodeSerializer(serializers.ModelSerializer):
     user_id= serializers.Field(source='user_id.username')
     class Meta:
         model=Node
-        fields= ('name','user_id','area' ,'lon','lat' ,'coords',)
+        fields= ('name','slug','user_id','address','area' ,'elevation','center' ,'coords',)
     
