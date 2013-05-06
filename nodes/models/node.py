@@ -1,9 +1,9 @@
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 
+
 class Node(models.Model):
     name = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
     user_id=models.ForeignKey(User)
     area = models.IntegerField()
     lon = models.FloatField()
