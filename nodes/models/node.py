@@ -5,12 +5,9 @@ from layers.models import Layer
 
 class Node(models.Model):
     name = models.CharField(max_length=50)
-<<<<<<< HEAD
-=======
     slug = models.CharField(max_length=50 ,unique=True)
     address = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
->>>>>>> testing
     user_id=models.ForeignKey(User)
     layer_id=models.ForeignKey(Layer)
     is_published =   models.BooleanField(default=True)
