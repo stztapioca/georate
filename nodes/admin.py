@@ -23,7 +23,9 @@ class NodeAdmin(admin.OSMGeoAdmin):
         ('Map ', {'fields': ['coords'], 'classes': ['collapse']}),
     ]
     inlines = [SettingsInLine,CommentInLine,RatingInLine,VoteInLine]
-
+    pnt = Point(12, 42, srid=4326)
+    pnt.transform(900913)
+    default_lon, default_lat = pnt.coords
 #admin.site.register(WorldBorder, admin.GeoModelAdmin)
 admin.site.register(Node_Participation_Settings)
 admin.site.register(Node, NodeAdmin)
