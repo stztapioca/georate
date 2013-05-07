@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
-from nodes import views
+import nodes.views
+import layers.views
+#from layers import views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,5 +18,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
-     url(r'^api_v1/nodes', views.Node_List.as_view()),
+     url(r'^api_v1/nodes', nodes.views.Node_List.as_view()),
+    url(r'^api_v1/layers', layers.views.Layer_List.as_view()),
      )

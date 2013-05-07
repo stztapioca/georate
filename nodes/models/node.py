@@ -11,13 +11,14 @@ class Node(models.Model):
     user_id=models.ForeignKey(User)
     layer_id=models.ForeignKey(Layer)
     is_published =   models.BooleanField(default=True)
-    area = models.PolygonField()
-    elevation = models.FloatField()
-    external_id = models.IntegerField()
-    notes = models.CharField(max_length=100)
-    center = models.PointField()
+    area = models.PolygonField(null=True)
+    elevation = models.FloatField(null=True)
+    external_id = models.IntegerField(null=True)
+    notes = models.CharField(max_length=100,null=True)
+    center = models.PointField(null=True)
     coords = models.PointField()
     objects = models.GeoManager()
+    tags= models.CharField(max_length=50)
     def __unicode__(self):
         return self.name
     class Meta:

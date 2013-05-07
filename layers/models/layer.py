@@ -7,12 +7,12 @@ class Layer(models.Model):
     description = models.CharField(max_length=200)
     is_published =   models.BooleanField(default=True)
     is_external =   models.BooleanField(default=True)
-    organization = models.CharField(max_length=50)
-    website = models.CharField(max_length=50)
+    organization = models.CharField(blank=True,max_length=50)
+    website = models.CharField(blank=True, max_length=50)
     center = models.PointField()
     area = models.PolygonField()
-    write_access_level = models.IntegerField()
-    minimum_distance = models.IntegerField()
+    write_access_level = models.IntegerField(blank=True, null=True)
+    minimum_distance = models.IntegerField(blank=True, null=True)
     objects = models.GeoManager()
     def __unicode__(self):
         return self.name
