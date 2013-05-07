@@ -16,7 +16,7 @@ class RatingInLine(admin.TabularInline):
 class VoteInLine(admin.TabularInline):
     model = Vote
     extra = 1 
-class NodeAdmin(admin.GeoModelAdmin):
+class NodeAdmin(admin.OSMGeoAdmin):
     fieldsets = [
         (None,               {'fields': ['name','slug','address','description']}),
         (Layer,               {'fields': ['layer_id','user_id']}),
