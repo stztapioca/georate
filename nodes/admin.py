@@ -1,4 +1,6 @@
 from django.contrib.gis import admin
+from django.contrib.gis.geos import Point
+
 #from django.contrib import admin
 from models import Node,Node_Participation_Settings
 from participation.models import Comment,Rating,Vote
