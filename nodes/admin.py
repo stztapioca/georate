@@ -29,5 +29,5 @@ class NodeAdmin(admin.OSMGeoAdmin):
     pnt.transform(900913)
     default_lon, default_lat = pnt.coords
 #admin.site.register(WorldBorder, admin.GeoModelAdmin)
-admin.site.register(Node_Participation_Settings)
+#admin.site.register(Node_Participation_Settings)
 admin.site.register(Node, NodeAdmin)
