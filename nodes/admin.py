@@ -3,7 +3,7 @@ from django.contrib.gis.geos import Point
 
 #from django.contrib import admin
 from models import Node
-from participation.models import Comment,Rating,Vote,Node_Participation_Settings
+from participation.models import Comment,Rating,Vote,Node_Participation_Settings,Node_Rating_Count
 from layers.models import Layer
 class SettingsInLine(admin.TabularInline):
     model = Node_Participation_Settings
@@ -31,3 +31,4 @@ class NodeAdmin(admin.OSMGeoAdmin):
 #admin.site.register(WorldBorder, admin.GeoModelAdmin)
 #admin.site.register(Node_Participation_Settings)
 admin.site.register(Node, NodeAdmin)
+admin.site.register(Node_Rating_Count)
