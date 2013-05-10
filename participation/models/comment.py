@@ -13,3 +13,6 @@ class Comment(models.Model):
     class Meta:
         db_table='Comment'
         app_label='participation'
+        
+        
+    

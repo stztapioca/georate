@@ -1,5 +1,5 @@
 from django.db import models
-from node import Node
+from nodes.models import Node
 
 class Node_Participation_Settings(models.Model):
     node_id=models.OneToOneField(Node)
@@ -9,6 +9,6 @@ class Node_Participation_Settings(models.Model):
 
     class Meta:
         db_table='Node_Participation_Settings'
-        app_label='nodes'
+        app_label='participation'
         
     

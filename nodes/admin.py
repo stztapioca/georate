@@ -2,8 +2,8 @@ from django.contrib.gis import admin
 from django.contrib.gis.geos import Point
 
 #from django.contrib import admin
-from models import Node,Node_Participation_Settings
-from participation.models import Comment,Rating,Vote
+from models import Node
+from participation.models import Comment,Rating,Vote,Node_Participation_Settings
 from layers.models import Layer
 class SettingsInLine(admin.TabularInline):
     model = Node_Participation_Settings

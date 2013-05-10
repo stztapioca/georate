@@ -9,10 +9,19 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'nodes')
-        
+
+
 class NodeSerializer(serializers.ModelSerializer):
     user_id= serializers.Field(source='user_id.username')
+    
     class Meta:
         model=Node
         fields= ('name','slug','user_id','address','area' ,'elevation','center' ,'coords',)
     
+class NodeListSerializer(NodeSerializer):
+    """ node list """
+    details = serializers.HyperlinkedIdentityField(view_name='api_node_details')
+    
+    class Meta:
+        model=Node
+        fields= ('name','slug','user_id','address','area' ,'elevation','center' ,'coords', 'details')
