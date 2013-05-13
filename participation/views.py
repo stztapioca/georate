@@ -1,8 +1,18 @@
 from models import Comment
-from serializers import CommentSerializer
 from rest_framework import generics
 from rest_framework.views import APIView
+from participation.models import Node_Rating_Count
+from serializers import ParticipationSerializer, ParticipationListSerializer
 
-class Comment_List(generics.ListAPIView):
-    model= Comment
-    serializer_class= CommentSerializer
+class NodeParticipationList(generics.ListAPIView):
+    """
+    ### GET
+    
+    Retrieve a **list** of nodes
+    """
+    model= Node_Rating_Count
+    serializer_class= ParticipationListSerializer
+    
+class NodeParticipationDetail(generics.RetrieveAPIView):
+    model= Node_Rating_Count
+    serializer_class= ParticipationSerializer

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from nodes.models import Node
+from participation.utils import is_participated
+from django.db.models import Count, Min, Sum, Max, Avg
 #from choices import RATING_CHOICES
 
 class Rating(models.Model):
@@ -10,16 +12,21 @@ class Rating(models.Model):
     (3,'3'),
     (4,'4'),
     (5,'5'),
-
-    
-
-    
                     )
     rate = models.IntegerField(choices=RATING_CHOICES)
-    user_id=models.ForeignKey(User)
-    node_id=models.ForeignKey(Node)
-  
-    
+    user=models.ForeignKey(User)
+    node=models.ForeignKey(Node)
+    def save(self):
+        super(Rating,self).save()
+        #node_id=self.node
+        #a=self.node.id
+        is_participated(self.node.id)
+        n=self.node
+        rating_avg=n.rating_set.aggregate(rate=Avg('rate'))
+        rating_float=rating_avg['rate']
+        nrc=n.node_rating_count
+        nrc.rating_avg=rating_float
+        nrc.save()
     class Meta:
         db_table='Rating'
         app_label='participation'

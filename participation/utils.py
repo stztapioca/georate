@@ -1,3 +1,6 @@
+from django.core.exceptions import ObjectDoesNotExist
+from nodes.models import Node
+
 
 def check_node(a,b):
     try:
@@ -7,16 +10,19 @@ def check_node(a,b):
     return
 
 def is_participated(node_id):
-    from django.core.exceptions import ObjectDoesNotExist
-    from nodes.models import Node
     from participation.models import Node_Rating_Count
+
+
     n = Node.objects.get(pk=node_id)
+    print(n.name)
+    print(n.id)
     try:
         p=n.node_rating_count
     except ObjectDoesNotExist:
         print('no relation')
-        nrc=Node_Rating_Count(node_id=n.id)
+        nrc=Node_Rating_Count(node=n)
         nrc.save()
-    return 
+        #return True
+    #return False
     
 

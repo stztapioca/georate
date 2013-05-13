@@ -20,8 +20,8 @@ class VoteInLine(admin.TabularInline):
     extra = 1 
 class NodeAdmin(admin.OSMGeoAdmin):
     fieldsets = [
-        (None,               {'fields': ['name','slug','address','description']}),
-        (Layer,               {'fields': ['layer_id','user_id']}),
+        (None,               {'fields': ['name','slug','description']}),
+        (Layer,               {'fields': ['layer','user']}),
         ('Map ', {'fields': ['coords'], 'classes': ['collapse']}),
     ]
     inlines = [SettingsInLine,CommentInLine,RatingInLine,VoteInLine]

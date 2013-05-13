@@ -12,11 +12,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class NodeSerializer(serializers.ModelSerializer):
-    user_id= serializers.Field(source='user_id.username')
+    user= serializers.Field(source='user.username')
     
     class Meta:
         model=Node
-        fields= ('name','slug','user_id','address','area' ,'elevation','center' ,'coords',)
+        fields= ('name','slug','user','area' ,'elevation','center' ,'coords',)
     
 class NodeListSerializer(NodeSerializer):
     """ node list """
@@ -24,4 +24,4 @@ class NodeListSerializer(NodeSerializer):
     
     class Meta:
         model=Node
-        fields= ('name','slug','user_id','address','area' ,'elevation','center' ,'coords', 'details')
+        fields= ('name','slug','user','area' ,'elevation','center' ,'coords', 'details')
