@@ -1,2 +1,2 @@
 from layer import Layer
-from layer_participation_settings import Layer_Participation_Settings
+from layer_participation_settings import LayerParticipationSettings

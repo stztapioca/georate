@@ -21,7 +21,7 @@ class Vote(models.Model):
         n=self.node
         likes=n.vote_set.filter(vote=1).count()
         dislikes=n.vote_set.filter(vote=-1).count()
-        nrc=n.node_rating_count
+        nrc=n.noderatingcount
         nrc.likes=likes
         nrc.dislikes=dislikes
         nrc.save()

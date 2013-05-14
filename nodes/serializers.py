@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'nodes')
+        fields = ('id', 'username')
 
 
 class NodeSerializer(serializers.ModelSerializer):
@@ -21,7 +21,9 @@ class NodeSerializer(serializers.ModelSerializer):
 class NodeListSerializer(NodeSerializer):
     """ node list """
     details = serializers.HyperlinkedIdentityField(view_name='api_node_details')
+        
+
     
     class Meta:
         model=Node
-        fields= ('name','slug','user','area' ,'elevation','center' ,'coords', 'details')
+        fields= ('name', 'details')

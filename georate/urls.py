@@ -20,12 +20,13 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
+     url(r'^api_v1/nodes/geojson/$', nodes.views.NodeGeojson),
      url(r'^api_v1/nodes/$', nodes.views.NodeList.as_view()),
      url(r'^api_v1/nodes/(?P<pk>[0-9]+)/$', nodes.views.NodeDetail.as_view(), name='api_node_details'),
      url(r'^api_v1/layers/$', layers.views.LayerList.as_view()),
      url(r'^api_v1/layers/(?P<pk>[0-9]+)/$', layers.views.LayerDetail.as_view(), name='api_layer_details'),
      url(r'^api_v1/nodes/participation/$', participation.views.NodeParticipationList.as_view()),
      url(r'^api_v1/nodes/participation/(?P<pk>[0-9]+)/$', participation.views.NodeParticipationDetail.as_view(), name='node_participation_details'),
-     #url(r'^api_v1/comments', participation.views.Comment_List.as_view()),
+     url(r'^api_v1/nodes/(?P<pk>[0-9]+)/comments/$', participation.views.CommentList.as_view()),
      )
 urlpatterns = format_suffix_patterns(urlpatterns)

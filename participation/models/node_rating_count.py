@@ -1,7 +1,7 @@
 from django.db import models
 from nodes.models import Node
 
-class Node_Rating_Count(models.Model):
+class NodeRatingCount(models.Model):
     node=models.OneToOneField(Node)
     likes =models.IntegerField (default=0)
     dislikes  =models.IntegerField (default=0)
@@ -10,7 +10,7 @@ class Node_Rating_Count(models.Model):
     def __unicode__(self):
         return self.node.name
     class Meta:
-        db_table='Node_Rating_Count'
+        db_table='NodeRatingCount'
         app_label='participation'
         
     

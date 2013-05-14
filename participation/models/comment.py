@@ -17,7 +17,7 @@ class Comment(models.Model):
         is_participated(self.node.id)
         n=self.node
         comments=n.comment_set.count()
-        nrc=n.node_rating_count
+        nrc=n.noderatingcount
         nrc.comment_count=comments
         nrc.save()
         

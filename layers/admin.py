@@ -1,10 +1,10 @@
 from django.contrib.gis import admin
 from django.contrib.gis.geos import Point 
 #from django.contrib import admin
-from models import Layer,Layer_Participation_Settings
+from models import Layer,LayerParticipationSettings
 
 class SettingsInLine(admin.TabularInline):
-    model = Layer_Participation_Settings
+    model = LayerParticipationSettings
     extra = 1 
 
 class LayerAdmin(admin.OSMGeoAdmin): 

@@ -24,7 +24,7 @@ class Rating(models.Model):
         n=self.node
         rating_avg=n.rating_set.aggregate(rate=Avg('rate'))
         rating_float=rating_avg['rate']
-        nrc=n.node_rating_count
+        nrc=n.noderatingcount
         nrc.rating_avg=rating_float
         nrc.save()
     class Meta:
