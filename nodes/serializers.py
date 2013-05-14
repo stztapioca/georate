@@ -1,10 +1,16 @@
 from rest_framework import serializers
+from layers.models import Layer
 from nodes.models import Node
 from django.contrib.auth.models import User
 
+class LayerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Layer
+        fields = ('id', 'name')
+
 
 class UserSerializer(serializers.ModelSerializer):
-    nodes = serializers.PrimaryKeyRelatedField(many=True)
 
     class Meta:
         model = User
@@ -13,10 +19,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 class NodeSerializer(serializers.ModelSerializer):
     user= serializers.Field(source='user.username')
-    
+    layer = serializers.Field(source='layer.name')
     class Meta:
         model=Node
-        fields= ('name','slug','user','area' ,'elevation','center' ,'coords',)
+        fields= ('layer','name','slug','user','area' ,'elevation','center' ,'coords',)
     
 class NodeListSerializer(NodeSerializer):
     """ node list """
