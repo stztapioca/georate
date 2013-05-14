@@ -22,29 +22,44 @@ class CommentSerializer(serializers.ModelSerializer):
         
         
 
-class CommentNodeSerializer(serializers.ModelSerializer):
+class NodeCommentSerializer(serializers.ModelSerializer):
     
-    #comments = serializers.PrimaryKeyRelatedField(many=True ,read_only=True)
     comments = CommentSerializer(source='comment_set')
     class Meta:
         model = Node
         fields = ('name','description','comments')
-
-       
+        
+        
 class ParticipationSerializer(serializers.ModelSerializer):
     
-    node= serializers.Field(source='node.name')
+    #node= serializers.Field(source='node.name')
     class Meta:
         model=NodeRatingCount
-        fields= ('node','likes','dislikes','rating_avg','comment_count')
+        fields= ('likes','dislikes','rating_avg','comment_count')
 
     
-class ParticipationListSerializer(ParticipationSerializer):
+class NodeParticipationSerializer(serializers.ModelSerializer):
     """ Node participation details"""
-    details = serializers.HyperlinkedIdentityField(view_name='node_participation_details')
+
+    participation=ParticipationSerializer(source='noderatingcount')
     class Meta:
-        model=NodeRatingCount
-        fields= ('node','details')
+        model=Node
+        fields= ('name','participation')       
+
+#class ParticipationSerializer(serializers.ModelSerializer):
+#    
+#    node= serializers.Field(source='node.name')
+#    class Meta:
+#        model=NodeRatingCount
+#        fields= ('node','likes','dislikes','rating_avg','comment_count')
+#
+#    
+#class ParticipationListSerializer(ParticipationSerializer):
+#    """ Node participation details"""
+#    details = serializers.HyperlinkedIdentityField(view_name='node_participation_details')
+#    class Meta:
+#        model=NodeRatingCount
+#        fields= ('node','details')
         
 #class CommentListSerializer(serializers.ModelSerializer):
 #    """ comment_list """
