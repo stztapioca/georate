@@ -4,9 +4,10 @@ from nodes.models import Node
 
 class NodeSerializer(serializers.ModelSerializer):
     
+    details = serializers.HyperlinkedIdentityField(view_name='api_node_details')
     class Meta:
         model = Node
-        fields = ('id','name', 'description')
+        fields = ('id','name', 'description','details')
         
 
 class LayerSerializer(serializers.ModelSerializer):
@@ -18,10 +19,10 @@ class LayerSerializer(serializers.ModelSerializer):
 class LayerListSerializer(LayerSerializer):
     """ Layer list """
     details = serializers.HyperlinkedIdentityField(view_name='api_layer_details')
-    
+    nodes =   serializers.HyperlinkedIdentityField(view_name='LayerNodesDetail')
     class Meta:
         model=Layer
-        fields= ('name','slug','description','center','area' ,'details',)
+        fields= ('name','slug','description','center','area' ,'details','nodes')
     
 class LayerNodeListSerializer(LayerSerializer):
     """ Layer nodes """
