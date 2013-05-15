@@ -19,7 +19,7 @@ class LayerSerializer(serializers.ModelSerializer):
 class LayerListSerializer(LayerSerializer):
     """ Layer list """
     details = serializers.HyperlinkedIdentityField(view_name='api_layer_details')
-    nodes =   serializers.HyperlinkedIdentityField(view_name='LayerNodesDetail')
+    nodes =   serializers.HyperlinkedIdentityField(view_name='api_layer_nodes_details')
     class Meta:
         model=Layer
         fields= ('name','slug','description','center','area' ,'details','nodes')

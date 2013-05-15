@@ -11,7 +11,7 @@ class LayerDetail(generics.RetrieveAPIView):
     model= Layer
     serializer_class= LayerSerializer
     
-class LayerNodesDetail(generics.RetrieveAPIView):
+class LayerNodesList(generics.RetrieveAPIView):
     model= Layer
     serializer_class= LayerNodeListSerializer
 
