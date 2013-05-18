@@ -10,7 +10,7 @@ class Comment(models.Model):
     node=models.ForeignKey(Node)
     def __unicode__(self):
         return self.comment
-    def save(self):
+    def save(self,*args,**kwargs):
         super(Comment,self).save()
         #node_id=self.node
         #a=self.node.id

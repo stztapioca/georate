@@ -2,8 +2,48 @@ from models import Comment
 from nodes.models import Node
 from rest_framework import generics
 from rest_framework.views import APIView
-from participation.models import NodeRatingCount
-from serializers import NodeParticipationSerializer,NodeCommentSerializer
+from rest_framework import permissions
+from rest_framework import authentication
+from participation.models import NodeRatingCount,Rating,Vote
+from serializers import NodeParticipationSerializer,NodeCommentSerializer,CommentAddSerializer,VoteAddSerializer,RatingAddSerializer
+
+
+class RatingAdd(generics.CreateAPIView):
+    """
+    ### POST
+    
+    Add ratings 
+    """
+    model= Rating
+    serializer_class= RatingAddSerializer
+    authentication_classes = (authentication.SessionAuthentication)
+    
+class VoteAdd(generics.CreateAPIView):
+    """
+    ### POST
+    
+    Add votes 
+    """
+    model= Vote
+    serializer_class= VoteAddSerializer
+
+class CommentAdd(generics.CreateAPIView):
+    """
+    ### POST
+    
+    Add comments 
+    """
+    model= Comment
+    serializer_class= CommentAddSerializer
+
+class CommentDetail(generics.RetrieveUpdateAPIView):
+    """
+    ### POST
+    
+    Edit comments 
+    """
+    model= Comment
+    serializer_class= CommentAddSerializer    
 
 class NodeParticipationDetail(generics.RetrieveAPIView):
     """

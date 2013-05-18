@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 from rest_framework import permissions
 from rest_framework import authentication
+from django.contrib.auth.models import User,Permission
 
 
 class NodeList(generics.ListCreateAPIView):
@@ -13,16 +14,18 @@ class NodeList(generics.ListCreateAPIView):
     
     Retrieve a **list** of nodes
     """
-    model= Node
-    serializer_class= NodeListSerializer
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    model= Node
+    serializer_class= NodeListSerializer
+    
     
     
 class NodeDetail(generics.RetrieveUpdateAPIView):
     model= Node
     serializer_class= NodeSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    #authentication_classes = (authentication.SessionAuthentication)
+    #permission_classes = (permissions.IsAuthenticatedOrReadOnly)
 
 
 from vectorformats.Formats import Django, GeoJSON
@@ -31,8 +34,8 @@ import simplejson as json
 
 class NodeGeojsonList(generics.RetrieveAPIView):
     model= Node
-    #serializer_class= NodeSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    #authentication_classes = (authentication.SessionAuthentication)
+    #permission_classes = (permissions.IsAuthenticatedOrReadOnly)
     
     def get(self, request, *args, **kwargs):
         n = Node.objects.all()

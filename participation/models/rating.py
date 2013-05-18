@@ -16,16 +16,18 @@ class Rating(models.Model):
     rate = models.IntegerField(choices=RATING_CHOICES)
     user=models.ForeignKey(User)
     node=models.ForeignKey(Node)
-    def save(self):
+    def save(self,*args,**kwargs):
         super(Rating,self).save()
         #node_id=self.node
         #a=self.node.id
         is_participated(self.node.id)
         n=self.node
+        rating_count=n.rating_set.count()
         rating_avg=n.rating_set.aggregate(rate=Avg('rate'))
         rating_float=rating_avg['rate']
         nrc=n.noderatingcount
         nrc.rating_avg=rating_float
+        nrc.rating_count=rating_count
         nrc.save()
     class Meta:
         db_table='Rating'

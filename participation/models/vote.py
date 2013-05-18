@@ -13,7 +13,7 @@ class Vote(models.Model):
     node=models.ForeignKey(Node)
     def __unicode__(self):
         return self.node.name
-    def save(self):
+    def save(self,*args,**kwargs):
         super(Vote,self).save()
         #node_id=self.node
         #a=self.node.id

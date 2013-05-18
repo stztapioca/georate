@@ -31,6 +31,11 @@ urlpatterns = patterns('',
      url(r'^api_v1/nodes/(?P<pk>[0-9]+)/comments/$', participation.views.NodeCommentDetail.as_view()),
      url(r'^api_v1/nodes/participation/$', participation.views.NodeParticipationList.as_view()),
      url(r'^api_v1/nodes/(?P<pk>[0-9]+)/participation/$', participation.views.NodeParticipationDetail.as_view()),
+     url(r'^api_v1/comments/$', participation.views.CommentAdd.as_view()),
+     url(r'^api_v1/comments/(?P<pk>[0-9]+)/$', participation.views.CommentDetail.as_view()),
+     url(r'^api_v1/votes/$', participation.views.VoteAdd.as_view()),
+     url(r'^api_v1/ratings/$', participation.views.RatingAdd.as_view()),
+     
 
      )
 urlpatterns = format_suffix_patterns(urlpatterns)

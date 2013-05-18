@@ -1,5 +1,4 @@
 Django==1.5.1
 GDAL==1.7.3
-djangorestframework==2.2.7
-psycopg2==2.5
+djangorestframework==2.3.3
 vectorformats==0.1

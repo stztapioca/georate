@@ -1,26 +1,36 @@
 from rest_framework import serializers
 from nodes.models import Node
 from django.contrib.auth.models import User
-from participation.models import NodeRatingCount,Comment
+from participation.models import NodeRatingCount,Comment,Vote,Rating
 
-
-class UserSerializer(serializers.ModelSerializer):
-    
-    nodes = serializers.PrimaryKeyRelatedField(many=True)
+class RatingAddSerializer(serializers.ModelSerializer):
+    #node= serializers.Field(source='node.name')
+    #username =serializers.Field(source='user.username')
     class Meta:
-        model = User
-        fields = ('id', 'username')
+        model = Rating
+        #fields = ('username', 'rating')
 
-
-
-class CommentSerializer(serializers.ModelSerializer):
+class VoteAddSerializer(serializers.ModelSerializer):
+    #node= serializers.Field(source='node.name')
+    #username =serializers.Field(source='user.username')
+    class Meta:
+        model = Vote
+        #fields = ('username', 'vote')
+        
+        
+class CommentAddSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        #fields = ('node','username', 'comment')
+        
     
+class CommentSerializer(serializers.ModelSerializer):
+    node= serializers.Field(source='node.name')
     username =serializers.Field(source='user.username')
     class Meta:
         model = Comment
         fields = ('username', 'comment')
-        
-        
+
 
 class NodeCommentSerializer(serializers.ModelSerializer):
     
@@ -35,7 +45,7 @@ class ParticipationSerializer(serializers.ModelSerializer):
     #node= serializers.Field(source='node.name')
     class Meta:
         model=NodeRatingCount
-        fields= ('likes','dislikes','rating_avg','comment_count')
+        fields= ('likes','dislikes','rating_count','rating_avg','comment_count')
 
     
 class NodeParticipationSerializer(serializers.ModelSerializer):
